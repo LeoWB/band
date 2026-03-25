@@ -21,6 +21,8 @@
 
 import React, { useState } from "react";
 
+import "../styles/Gallery.css";
+
 const images = require.context("../gallery", true);
 const images_list = images.keys().map((image) => images(image));
 

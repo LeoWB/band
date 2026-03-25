@@ -1,12 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 
 const gigs = [
   {
     id: 1,
-    date: "2026-04-12",
-    city: "London, UK",
-    venue: "O2 Academy Islington",
-    ticketLink: "https://tickets.example.com/london",
+    date: "2026-04-04",
+    city: "Leytonstone, London",
+    venue: "Calamity Tank",
+    ticketLink: "https://www.instagram.com/p/DWSEHgAjIks/",
+    free: true,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const gigs = [
     city: "Manchester, UK",
     venue: "Band on the Wall",
     ticketLink: "https://tickets.example.com/manchester",
+    free: false,
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ const gigs = [
     city: "Bristol, UK",
     venue: "The Fleece",
     ticketLink: "https://tickets.example.com/bristol",
+    free: false,
   },
 ];
 
@@ -35,6 +38,33 @@ function formatDate(dateStr) {
 }
 
 export default function GigList() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible"); // reset when out of view
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll("h2, .description").forEach((el) => {
+      el.classList.add("fade-in");
+      observer.observe(el);
+    });
+
+    document.querySelectorAll(".gig-item").forEach((item, i) => {
+      item.style.transitionDelay = `${i * 0.08}s`;
+      observer.observe(item);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="gig-list">
       <h2>Upcoming Shows</h2>
@@ -55,7 +85,8 @@ export default function GigList() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get Tickets
+              {/* Get Tickets */}
+              {gig.free ? "Free" : "Get Tickets"}
             </a>
           </li>
         ))}

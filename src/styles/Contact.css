@@ -1,0 +1,20 @@
+/* Contact */
+
+html {
+  height: 100%;
+}
+
+.contact {
+  text-align: center;
+  padding: 2rem;
+  height: 100%;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  gap: 0.5em;
+  font-size: 50px;
+}

@@ -1,6 +1,8 @@
 import insignia from "../images/insignia.png";
 import killtaker from "../images/killtaker.png";
 
+import "../styles/Header.css";
+
 export default function Header() {
   return (
     <header>

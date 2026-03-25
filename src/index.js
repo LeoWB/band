@@ -8,7 +8,7 @@ import "./styles/App.css";
 import Contact from "./pages/Contact";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
-import Gallery from "./components/Gallery";
+import Gallery from "./pages/Gallery";
 
 export default function App() {
   return (

@@ -1,0 +1,100 @@
+/* Gig list */
+
+h2 {
+  font-weight: 300;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  text-align: center;
+}
+
+.gig-list {
+  padding: 3rem;
+  border: 2px solid #ddd;
+}
+
+.gig-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.gig-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin: 1rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.gig-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.gig-date {
+  font-weight: bold;
+}
+
+.homephoto {
+  width: 60vw;
+  display: block;
+  margin: auto;
+}
+
+@media screen and (min-width: 600px) {
+  .ticket-button {
+    width: 10rem;
+    text-align: center;
+  }
+
+  .top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    padding: 1em;
+    align-items: center;
+    padding-bottom: 3rem;
+  }
+
+  .homephoto {
+    order: -1;
+  }
+}
+
+/* Description */
+
+.description {
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .gig-list {
+    border: none;
+  }
+
+  .homephoto {
+    width: 100vw;
+  }
+}
+
+/* --------------------- */
+
+/* Scroll animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gig-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.gig-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
