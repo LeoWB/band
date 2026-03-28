@@ -20,14 +20,21 @@
 // }
 
 import React, { useState } from "react";
-
 import "../styles/Gallery.css";
-
 const images = require.context("../gallery", true);
 const images_list = images.keys().map((image) => images(image));
 
+const captions = [
+  "The band at Dingwalls2",
+  "James and his Lemsip",
+  "Sick crowd",
+  // ... one for each image
+];
+
+console.log(images_list.map((img) => img));
+
 export default function Gallery() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   return (
     <section id="gallery" className="gallery">
@@ -37,19 +44,23 @@ export default function Gallery() {
             <img
               src={image}
               alt={`Gallery ${index}`}
-              onClick={() => setSelectedImage(image)}
+              onClick={() => setSelectedIndex(index)}
             />
           </div>
         ))}
       </div>
-
-      {selectedImage && (
-        <div className="lightbox" onClick={() => setSelectedImage(null)}>
-          <img
-            src={selectedImage}
-            className="lightbox-image"
-            alt="Expanded view"
-          />
+      {selectedIndex !== null && (
+        <div className="lightbox" onClick={() => setSelectedIndex(null)}>
+          <div className="lightbox-content">
+            <img
+              src={images_list[selectedIndex]}
+              className="lightbox-image"
+              alt="Expanded view"
+            />
+            {captions[selectedIndex] && (
+              <p className="lightbox-caption">{captions[selectedIndex]}</p>
+            )}
+          </div>
         </div>
       )}
     </section>

@@ -62,7 +62,24 @@
   z-index: 1000;
 }
 
+.lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 95vh;
+  justify-content: center;
+}
+
 .lightbox-image {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  flex-shrink: 1;
+}
+
+.lightbox-caption {
+  color: white;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 1rem;
 }

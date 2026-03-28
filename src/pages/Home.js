@@ -2,7 +2,7 @@ import GigList from "../components/Gigs.js";
 
 import "../styles/Home.css";
 
-import homephoto from "../gallery/5.jpg";
+import homephoto from "../gallery/3.jpg";
 
 export default function Home() {
   return (
