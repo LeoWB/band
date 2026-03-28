@@ -3,6 +3,9 @@
   --light_text: #403d39;
   --accent: #2c290d;
   --dark: #252422;
+  --darker-background: #f5ebe0;
+  --red: #f94144;
+  --light-red: #ffc9b9;
 }
 
 /* ── GLOBAL: prevent horizontal overflow on all pages ── */
@@ -38,6 +41,16 @@ footer {
   opacity: 70%;
 }
 
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout footer {
+  margin-top: auto;
+}
+
 /* Inputs / buttons */
 input,
 textarea,
@@ -47,7 +60,7 @@ button,
   border: 0;
   padding: 1rem;
   font-family: inherit;
-  background-color: #f5ebe0;
+  background-color: var(--darker-background);
   font-size: 1rem;
   font-weight: 100;
 }

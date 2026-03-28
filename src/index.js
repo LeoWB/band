@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
+import Unsubscribe from "./pages/Unsubscribe";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/unsubscribe" element={<Unsubscribe />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -28,5 +30,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

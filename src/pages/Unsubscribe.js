@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
-import "../styles/Contact.css";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+} from "firebase/firestore";
 
-function Contact() {
+function Unsubscribe() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(null);
 
@@ -15,17 +20,17 @@ function Contact() {
         collection(db, "mailing-list"),
         where("email", "==", email),
       );
-      const existing = await getDocs(q);
+      const snapshot = await getDocs(q);
 
-      if (!existing.empty) {
-        setStatus("duplicate");
+      if (snapshot.empty) {
+        setStatus("notfound");
         return;
       }
 
-      await addDoc(collection(db, "mailing-list"), {
-        email: email,
-        joinedAt: new Date(),
+      snapshot.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
       });
+
       setStatus("success");
       setEmail("");
     } catch (error) {
@@ -34,14 +39,14 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="contact">
+    <section className="contact">
       {status === "success" ? (
-        <h2>
-          you're on the list. <br /> thank you for signing up &lt; 3
-        </h2>
+        <p>
+          you've been removed from the list. <br /> bye :(
+        </p>
       ) : (
         <div>
-          <h2 id="join-ask">join our mailing list</h2>
+          <p>Unsubscribe from the mailing list</p>
           <form onSubmit={handleSubmit}>
             <input
               type="email"
@@ -51,10 +56,10 @@ function Contact() {
               required
             />
             <button type="submit" disabled={status === "loading"}>
-              {status === "loading" ? "Joining..." : "Join"}
+              {status === "loading" ? "Removing..." : "Unsubscribe"}
             </button>
-            {status === "duplicate" && (
-              <p className="error">you're already signed up ... silly</p>
+            {status === "notfound" && (
+              <p className="error">that email isn't on the list.</p>
             )}
             {status === "error" && (
               <p className="error">something went wrong, try again.</p>
@@ -66,4 +71,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default Unsubscribe;
